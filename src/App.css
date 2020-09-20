@@ -11,3 +11,8 @@
 tr.noBorder td {
   border: 0;
 }
+.tabled {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+}

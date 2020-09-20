@@ -3,17 +3,17 @@ import PDF from "./PDF";
 
 class PaySlip extends Component {
   state = {
-    compName: "",
-    compAddress1: "",
-    compAddress2: "",
+    compName: "Maritime Outlets Inc",
+    compAddress1: "1480 Fall River Road Unit#207",
+    compAddress2: "Fall River, NS B2T1J1",
     compAddress3: "",
-    empName: "",
-    empId: "",
-    empAddress1: "",
-    empAddress2: "",
-    empAddress3: "",
-    payPeriod: "",
-    payDate: "",
+    empName: "Mahima Chachra",
+    empId: "224",
+    empAddress1: "36 Transom Dr",
+    empAddress2: "Halifax, NS",
+    empAddress3: "B3M 4V6",
+    payPeriod: "Jul 16th - 31st (2020)",
+    payDate: "Aug 1st 2020",
     workedHours: 0,
     amountPerHour: 0,
     cppDeduction: 0,
@@ -83,7 +83,7 @@ class PaySlip extends Component {
   render() {
     return (
       <>
-        {this.state.infoSubmitted === false ? (
+        {this.state.infoSubmitted === true ? (
           <div className="container">
             <div className="jumbotron mt-3">
               <div className="row">

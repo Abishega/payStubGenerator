@@ -20,8 +20,8 @@ const PDF = (props) => {
     empId = "",
     empName = "Mahima Chachra",
     itDeduction = 0,
-    payDate = "",
-    payPeriod = "",
+    payDate = "Aug 1st 2020",
+    payPeriod = "Jul 16th - 31st (2020)",
     thisPeriod = 0,
     workedHours = 0,
     yearToDate = 0,
@@ -33,39 +33,78 @@ const PDF = (props) => {
       <div className="PaySlip" ref={ref}>
         <ReactBootStrap.Table striped bordered hover>
           <thead>
-            <tr class="noBorder">
-              <th>{compName}</th>
-              <th style={{ "text-align": "right" }}>{empName}</th>
+            <tr className="noBorder">
+              <th style={{ padding: "0.4rem" }}>{compName}</th>
+              <th style={{ "text-align": "right", padding: "0.4rem" }}>
+                {empName}
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr class="noBorder">
-              <td colSpan="1"></td>
-              <td style={{ "text-align": "right" }}>{empId}</td>
+              <td style={{ padding: "0.4rem", fontSize: "0.8rem" }}>
+                {compAddress1}
+              </td>
+              <td style={{ "text-align": "right", padding: "0.4rem" }}>
+                {"Employee ID : " + empId}
+              </td>
             </tr>
             <tr class="noBorder">
-              <td>{compAddress1}</td>
-              <td style={{ "text-align": "right" }}>{empAddress1}</td>
+              <td style={{ padding: "0.4rem", fontSize: "0.8rem" }}>
+                {compAddress2}
+              </td>
+              <td
+                style={{
+                  "text-align": "right",
+                  padding: "0.4rem",
+                  fontSize: "0.8rem",
+                }}
+              >
+                {empAddress1}
+              </td>
             </tr>
 
             <tr class="noBorder">
-              <td>{compAddress2}</td>
-              <td style={{ "text-align": "right" }}>{empAddress2}</td>
+              <td style={{ padding: "0.4rem", fontSize: "0.8rem" }}>
+                {compAddress3}
+              </td>
+              <td
+                style={{
+                  "text-align": "right",
+                  padding: "0.4rem",
+                  fontSize: "0.8rem",
+                }}
+              >
+                {empAddress2}
+              </td>
             </tr>
             <tr class="noBorder">
               <td>{compAddress3}</td>
-              <td style={{ "text-align": "right" }}>{empAddress3}</td>
+              <td
+                style={{
+                  "text-align": "right",
+                  padding: "0.4rem",
+                  fontSize: "0.8rem",
+                }}
+              >
+                {empAddress3}
+              </td>
             </tr>
 
-            <tr style={{ "font-weight": "bold" }} class="noBorder">
-              <td>{payPeriod}</td>
-              <td style={{ "text-align": "right" }}>{payDate}</td>
+            <tr
+              class="noBorder"
+              style={{ backgroundColor: "rgb(204, 204, 204)" }}
+            >
+              <td>{" Pay Period : " + payPeriod}</td>
+              <td style={{ "text-align": "right" }}>
+                {" Pay Date : " + payDate}
+              </td>
             </tr>
           </tbody>
         </ReactBootStrap.Table>
         <ReactBootStrap.Table striped bordered hover>
-          <thead>
-            <tr>
+          <thead class="noBorder">
+            <tr >
               <th>Income</th>
               <th>This Period</th>
               <th>Year to Date</th>
@@ -75,7 +114,7 @@ const PDF = (props) => {
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr class="noBorder">
               <td>Regular</td>
               <td>{thisPeriod}</td>
               <td>{thisPeriod}</td>
@@ -83,7 +122,7 @@ const PDF = (props) => {
               <td>{cppDeduction}</td>
               <td>{cppDeduction}</td>
             </tr>
-            <tr>
+            <tr class="noBorder">
               <td></td>
               <td></td>
               <td></td>
@@ -91,7 +130,7 @@ const PDF = (props) => {
               <td>{eiDeduction}</td>
               <td>{eiDeduction}</td>
             </tr>
-            <tr>
+            <tr class="noBorder">
               <td></td>
               <td></td>
               <td></td>
@@ -99,13 +138,13 @@ const PDF = (props) => {
               <td>{itDeduction}</td>
               <td>{itDeduction}</td>
             </tr>
-            <tr style={{ "font-weight": "bold" }}>
+            <tr class="noBorder" style={{ "font-weight": "bold" }}>
               <td colSpan="3"></td>
               <td>Total Deductions</td>
               <td>{currentTotalDeduction}</td>
               <td>{yearToDateDeduction}</td>
             </tr>
-            <tr style={{ "font-weight": "bold" }}>
+            <tr class="noBorder" style={{ "font-weight": "bold" }}>
               <td>Total Gross</td>
               <td>{thisPeriod}</td>
               <td>{yearToDate}</td>
@@ -113,7 +152,12 @@ const PDF = (props) => {
               <td>{currentTotalAfterDeduction}</td>
               <td>{yearToDateAfterDeduction}</td>
             </tr>
-            <tr style={{ "font-weight": "bold" }}>
+            <tr class="noBorder"
+              style={{
+                "font-weight": "bold",
+                backgroundColor: "rgb(204, 204, 204)",
+              }}
+            >
               <td colSpan="3"></td>
               <td>Current Period Net income</td>
               <td colSpan="1"></td>
@@ -122,10 +166,10 @@ const PDF = (props) => {
           </tbody>
         </ReactBootStrap.Table>
       </div>
-      <div className = "PaySlip"> 
-      <Pdf targetRef={ref} filename="payslip.pdf"  >
-        {({ toPdf }) => <button onClick={toPdf}>Capture as PDF</button>}
-      </Pdf>
+      <div className="PaySlip">
+        <Pdf targetRef={ref} filename="payslip.pdf">
+          {({ toPdf }) => <button onClick={toPdf}>Capture as PDF</button>}
+        </Pdf>
       </div>
     </>
   );
