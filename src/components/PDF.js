@@ -27,7 +27,12 @@ const PDF = (props) => {
     yearToDate = 0,
     yearToDateAfterDeduction = 0,
     yearToDateDeduction = 0,
+    variablePay1 = 0,
+    variablePay2 = 0,
+    totalGrossThisPeriod = 0,
+    totalGrossYearToDate = 0,
   } = props.info;
+  const RegularsalaryInfo = ` Regular (${workedHours} hrs @${amountPerHour}).`
   return (
     <>
       <div className="PaySlip" ref={ref}>
@@ -79,7 +84,7 @@ const PDF = (props) => {
               </td>
             </tr>
             <tr class="noBorder">
-              <td>{compAddress3}</td>
+              <td></td>
               <td
                 style={{
                   "text-align": "right",
@@ -115,7 +120,7 @@ const PDF = (props) => {
           </thead>
           <tbody>
             <tr class="noBorder">
-              <td>Regular</td>
+              <td>{RegularsalaryInfo}</td>
               <td>{thisPeriod}</td>
               <td>{thisPeriod}</td>
               <td>CPP</td>
@@ -123,17 +128,18 @@ const PDF = (props) => {
               <td>{cppDeduction}</td>
             </tr>
             <tr class="noBorder">
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>Variable Pay 1</td>
+              <td>{variablePay1}</td>
+              <td>{variablePay1}</td>
               <td>EI</td>
               <td>{eiDeduction}</td>
               <td>{eiDeduction}</td>
             </tr>
             <tr class="noBorder">
-              <td></td>
-              <td></td>
-              <td></td>
+            <td>Variable Pay 2</td>
+              <td>{variablePay2}</td>
+              <td>{variablePay2}</td>
+           
               <td>Income Tax</td>
               <td>{itDeduction}</td>
               <td>{itDeduction}</td>
@@ -146,8 +152,8 @@ const PDF = (props) => {
             </tr>
             <tr class="noBorder" style={{ "font-weight": "bold" }}>
               <td>Total Gross</td>
-              <td>{thisPeriod}</td>
-              <td>{yearToDate}</td>
+              <td>{totalGrossThisPeriod}</td>
+              <td>{totalGrossYearToDate}</td>
               <td>Total Net</td>
               <td>{currentTotalAfterDeduction}</td>
               <td>{yearToDateAfterDeduction}</td>
@@ -167,7 +173,7 @@ const PDF = (props) => {
         </ReactBootStrap.Table>
       </div>
       <div className="PaySlip">
-        <Pdf targetRef={ref} filename="payslip.pdf">
+        <Pdf targetRef={ref} filename= {empName +"paystub.pdf"}>
           {({ toPdf }) => <button onClick={toPdf}>Capture as PDF</button>}
         </Pdf>
       </div>

@@ -14,11 +14,11 @@ class PaySlip extends Component {
     empAddress3: "B3M 4V6",
     payPeriod: "Jul 16th - 31st (2020)",
     payDate: "Aug 1st 2020",
-    workedHours: 0,
-    amountPerHour: 0,
-    cppDeduction: 0,
-    eiDeduction: 0,
-    itDeduction: 0,
+    workedHours: 72,
+    amountPerHour: 42,
+    cppDeduction: 10,
+    eiDeduction: 20,
+    itDeduction: 30,
     infoSubmitted: false,
     thisPeriod: 0,
     yearToDate: 0,
@@ -26,6 +26,10 @@ class PaySlip extends Component {
     yearToDateDeduction: 0,
     currentTotalAfterDeduction: 0,
     yearToDateAfterDeduction: 0,
+    totalGrossThisPeriod:0,
+    totalGrossYearToDate:0,
+    variablePay1: 0,
+    variablePay2: 0,
   };
 
   onValChange = (input) => (e) => {
@@ -54,10 +58,19 @@ class PaySlip extends Component {
       alert("Please Provide Mandatory Information");
       e.preventDefault();
     } else {
-      const income = this.state.workedHours * this.state.amountPerHour;
+      const additiveVariablePay =
+        +this.state.variablePay1 + +this.state.variablePay2;
+        console.log('additivevarpayyy', additiveVariablePay, this.state.variablePay1, this.state.variablePay2);
+        const amountForWorkedHours = this.state.workedHours * this.state.amountPerHour;
+      const income =
+      amountForWorkedHours+
+        additiveVariablePay;
+        console.log('incomee', income, amountForWorkedHours, additiveVariablePay);
       this.setState({
-        thisPeriod: income,
-        yearToDate: income,
+        thisPeriod: amountForWorkedHours,
+        yearToDate: amountForWorkedHours,
+        totalGrossThisPeriod: income,
+        totalGrossYearToDate: income,
       });
       const additiveDeduction =
         +this.state.cppDeduction +
@@ -83,7 +96,7 @@ class PaySlip extends Component {
   render() {
     return (
       <>
-        {this.state.infoSubmitted === true ? (
+        {this.state.infoSubmitted === false ? (
           <div className="container">
             <div className="jumbotron mt-3">
               <div className="row">
@@ -235,6 +248,30 @@ class PaySlip extends Component {
                             name="title"
                             type="number"
                             placeholder="Enter Number of Worked Hours"
+                            className="form-control"
+                          ></input>
+                        </div>
+                        <div className="form-group">
+                          <span className="col-md-1 col-md-offset-2 text-center">
+                            <i className="fa fa-user bigicon"></i>
+                          </span>
+                          <input
+                            onChange={this.onValChange("variablePay1")}
+                            name="title"
+                            type="number"
+                            placeholder="Enter Variable pay Amount (If Any)"
+                            className="form-control"
+                          ></input>
+                        </div>
+                        <div className="form-group">
+                          <span className="col-md-1 col-md-offset-2 text-center">
+                            <i className="fa fa-user bigicon"></i>
+                          </span>
+                          <input
+                            onChange={this.onValChange("variablePay2")}
+                            name="title"
+                            type="number"
+                            placeholder="Enter Variable pay Amount (If Any)"
                             className="form-control"
                           ></input>
                         </div>
